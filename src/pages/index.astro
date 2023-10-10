@@ -1,11 +1,54 @@
 ---
+import { Button } from "@/components/ui/button";
 import { parse } from "rss-to-json";
 import Layout from "../layout.astro";
 
 let articlesURL = "https://news.google.com/rss/search?q=typescript";
 let articlesJSON = await parse(articlesURL);
+
+console.log(articlesJSON.items[0]);
 ---
 
 <Layout>
-  <h1>Hello</h1>
+  <section
+    class="flex flex-col items-center justify-center flex-grow bg-[#f3e0c6] dark:bg-[#6b4226] text-center p-8"
+  >
+    <h2 class="text-4xl text-blue-900 dark:text-blue-500 mb-4">
+      Welcome to TypeScript Coffee
+    </h2>
+    <p class="text-blue-700 dark:text-blue-300 mb-8">
+      Your source for the latest news in the TypeScript community
+    </p>
+    <Button
+      className="bg-blue-500 dark:bg-blue-900 text-white px-6 py-3 rounded"
+    >
+      Subscribe Now
+    </Button>
+  </section>
+  <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      articlesJSON.items.map((article) => {
+        return (
+          <article class="border rounded p-4">
+            <img
+              alt="News Thumbnail"
+              class="mb-4"
+              height="200"
+              src="/placeholder.svg"
+              style={{
+                aspectRatio: "200/200",
+                objectFit: "cover",
+              }}
+              width="200"
+            />
+            <h3 class="text-lg font-bold mb-2">{article.title}</h3>
+            <p
+              set:html={article.description}
+              class="text-gray-700 dark:text-gray-300"
+            />
+          </article>
+        );
+      })
+    }
+  </main>
 </Layout>
