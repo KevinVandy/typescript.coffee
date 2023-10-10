@@ -1,16 +1,19 @@
 ---
+import { parse } from "rss-to-json";
 
+let articlesURL = "https://news.google.com/rss/search?q=typescript";
+let articlesJSON = await parse(articlesURL);
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>TypeScript Coffee</title>
+  </head>
+  <body>
+
+  </body>
 </html>
