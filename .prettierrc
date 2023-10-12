@@ -1,0 +1,11 @@
+{
+  "arrowParens": "always",
+  "tabWidth": 2,
+  "semi": true,
+  "trailingComma": "all",
+  "useTabs": true,
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ]
+}

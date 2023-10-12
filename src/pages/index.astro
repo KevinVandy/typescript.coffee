@@ -2,53 +2,105 @@
 import { Button } from "@/components/ui/button";
 import { parse } from "rss-to-json";
 import Layout from "../layout.astro";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
-let articlesURL = "https://news.google.com/rss/search?q=typescript";
-let articlesJSON = await parse(articlesURL);
+const googleNewsURL = 'https://news.google.com/rss/search?q="typescript"';
+const googleNewsJSON = await parse(googleNewsURL);
 
-console.log(articlesJSON.items[0]);
+const devtoURL =
+	"https://dev.to/api/articles?tag=typescript&per_page=24&state=rising&top=30";
+const devtoJSON = (await fetch(devtoURL).then((res) =>
+	res.json(),
+)) as DevToArticleListItem[];
 ---
 
 <Layout>
-  <section
-    class="flex flex-col items-center justify-center flex-grow bg-[#f3e0c6] dark:bg-[#6b4226] text-center p-8"
-  >
-    <h2 class="text-4xl text-blue-900 dark:text-blue-500 mb-4">
-      Welcome to TypeScript Coffee
-    </h2>
-    <p class="text-blue-700 dark:text-blue-300 mb-8">
-      Your source for the latest news in the TypeScript community
-    </p>
-    <Button
-      className="bg-blue-500 dark:bg-blue-900 text-white px-6 py-3 rounded"
-    >
-      Subscribe Now
-    </Button>
-  </section>
-  <main class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    {
-      articlesJSON.items.map((article) => {
-        return (
-          <article class="border rounded p-4">
-            <img
-              alt="News Thumbnail"
-              class="mb-4"
-              height="200"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "200/200",
-                objectFit: "cover",
-              }}
-              width="200"
-            />
-            <h3 class="text-lg font-bold mb-2">{article.title}</h3>
-            <p
-              set:html={article.description}
-              class="text-gray-700 dark:text-gray-300"
-            />
-          </article>
-        );
-      })
-    }
-  </main>
+	<section
+		class="flex flex-grow flex-col items-center justify-center bg-[#f3e0c6] p-8 text-center dark:bg-[#6b4226]"
+	>
+		<h2 class="mb-4 text-4xl text-blue-900 dark:text-blue-500">
+			Welcome to TypeScript Coffee
+		</h2>
+		<p class="mb-8 text-blue-700 dark:text-blue-300">
+			Your source for the latest news in the TypeScript community
+		</p>
+		<Button
+			className="rounded bg-blue-500 px-6 py-3 text-white dark:bg-blue-900"
+		>
+			Subscribe Now
+		</Button>
+	</section>
+	<main class="m-auto grid max-w-screen-2xl gap-4 p-8">
+		<div
+			class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+		>
+			{
+				devtoJSON.map((article: DevToArticleListItem) => {
+					return (
+						<article class="flex h-full flex-col place-content-between rounded border p-4">
+							<div>
+								<div class="flex gap-2">
+									<img
+										alt="News Thumbnail"
+										class="mb-4"
+										height="200"
+										src={article.social_image}
+										class="rounded"
+										style={{
+											objectFit: "cover",
+										}}
+										width="200"
+									/>
+								</div>
+								<h3 class="mb-2 text-lg font-bold">{article.title}</h3>
+								<p class="text-gray-700 dark:text-gray-300">
+									{article.description}{" "}
+									<a
+										class="text-blue-500 dark:text-blue-900"
+										target="_blank"
+										href={article.canonical_url}
+									>
+										Read More
+									</a>
+								</p>
+							</div>
+							<div>
+								<div class="flex items-center justify-between">
+									<span class="flex items-center">
+										<img
+											alt="Author Avatar"
+											src={article.user.profile_image_90}
+											height="45"
+											width="45"
+											class="rounded-full"
+										/>
+										<span class="flex justify-center">{article.user.name}</span>
+									</span>
+									<span>{dayjs(article.published_at).fromNow()}</span>
+								</div>{" "}
+							</div>
+						</article>
+					);
+				})
+			}
+		</div>
+		<hr />
+		<div>
+			{
+				googleNewsJSON.items.map((article: GoogleNewsArticleListItem) => {
+					return (
+						<article class="rounded border p-4">
+							<h3 class="mb-2 text-lg font-bold">{article.title}</h3>
+							<p
+								set:html={article.description}
+								class="text-gray-700 dark:text-gray-300"
+							/>
+						</article>
+					);
+				})
+			}
+		</div>
+	</main>
 </Layout>
