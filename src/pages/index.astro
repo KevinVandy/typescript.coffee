@@ -89,17 +89,19 @@ const devtoJSON = (await fetch(devtoURL).then((res) =>
 		<hr />
 		<div>
 			{
-				googleNewsJSON.items.map((article: GoogleNewsArticleListItem) => {
-					return (
-						<article class="rounded border p-4">
-							<h3 class="mb-2 text-lg font-bold">{article.title}</h3>
-							<p
-								set:html={article.description}
-								class="text-gray-700 dark:text-gray-300"
-							/>
-						</article>
-					);
-				})
+				googleNewsJSON.items
+					.map((article: GoogleNewsArticleListItem) => {
+						return (
+							<article class="rounded border p-4">
+								<h3 class="mb-2 text-lg font-bold">{article.title}</h3>
+								<p
+									set:html={article.description}
+									class="text-gray-700 dark:text-gray-300"
+								/>
+							</article>
+						);
+					})
+					.slice(0, 20)
 			}
 		</div>
 	</main>
