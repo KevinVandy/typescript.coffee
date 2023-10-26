@@ -1,13 +1,13 @@
 ---
 import { Button } from "@/components/ui/button";
-import { parse } from "rss-to-json";
+// import { parse } from "rss-to-json";
 import Layout from "../layout.astro";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-const googleNewsURL = 'https://news.google.com/rss/search?q="typescript"';
-const googleNewsJSON = await parse(googleNewsURL);
+// const googleNewsURL = 'https://news.google.com/rss/search?q="typescript"';
+// const googleNewsJSON = await parse(googleNewsURL);
 
 const devtoURL =
 	"https://dev.to/api/articles?tag=typescript&per_page=24&state=rising&top=30";
@@ -87,7 +87,7 @@ const devtoJSON = (await fetch(devtoURL).then((res) =>
 			}
 		</div>
 		<hr />
-		<div>
+		<!-- <div>
 			{
 				googleNewsJSON.items
 					.map((article: GoogleNewsArticleListItem) => {
@@ -103,6 +103,6 @@ const devtoJSON = (await fetch(devtoURL).then((res) =>
 					})
 					.slice(0, 20)
 			}
-		</div>
+		</div> -->
 	</main>
 </Layout>
