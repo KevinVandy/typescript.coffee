@@ -11,27 +11,27 @@
 		"format": "prettier --write . --plugin=prettier-plugin-astro --plugin=prettier-plugin-tailwindcss"
 	},
 	"dependencies": {
-		"@astrojs/react": "^3.0.4",
-		"@astrojs/tailwind": "^5.0.2",
-		"@astrojs/vercel": "^5.1.0",
-		"@radix-ui/react-slot": "^1.0.2",
-		"@types/react": "^18.2.33",
-		"@types/react-dom": "^18.2.14",
-		"astro": "^3.4.0",
+		"@astrojs/react": "^3.6.0",
+		"@astrojs/tailwind": "^5.1.0",
+		"@astrojs/vercel": "^7.7.2",
+		"@radix-ui/react-slot": "^1.1.0",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"astro": "^4.12.2",
 		"class-variance-authority": "^0.7.0",
-		"clsx": "^2.0.0",
-		"dayjs": "^1.11.10",
-		"lucide-react": "^0.289.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"clsx": "^2.1.1",
+		"dayjs": "^1.11.12",
+		"lucide-react": "^0.417.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
 		"rss-to-json": "^2.1.1",
-		"tailwind-merge": "^1.14.0",
-		"tailwindcss": "^3.3.5",
+		"tailwind-merge": "^2.4.0",
+		"tailwindcss": "^3.4.7",
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"devDependencies": {
-		"prettier": "^3.0.3",
-		"prettier-plugin-astro": "^0.12.1",
-		"prettier-plugin-tailwindcss": "^0.5.6"
+		"prettier": "^3.3.3",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-tailwindcss": "^0.6.5"
 	}
 }
