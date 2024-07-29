@@ -3,14 +3,18 @@ import "./global.css";
 ---
 
 <html lang="en">
-	<head> 
-		<a rel="icon" type="image/svg+xml" href="/favicon.svg"></a>
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>TypeScript Coffee</title>
-		<meta charset="utf-8" />
-		<script defer data-domain="typescript.coffee" src="/js/script" />
-	</head>
+	<head> <a rel="icon" type="image/svg+xml" href="/favicon.svg"></a>
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<title>TypeScript Coffee</title>
+	<meta charset="utf-8" />
+	<script
+		defer
+		data-domain="typescript.coffee"
+		src="/js/script.js"
+		data-api="/api/event"
+	></script>
+</head>
 
 	<body>
 		<div class="flex h-screen flex-col bg-white dark:bg-gray-900">
